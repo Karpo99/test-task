@@ -1,7 +1,7 @@
 package com.userservice.base;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.userservice.config.TokenConfigurationParameter;
+import com.userservice.config.TokenConfig;
 import com.userservice.model.Token;
 import com.userservice.model.entity.UserEntity;
 import com.userservice.model.enums.TokenClaims;
@@ -32,8 +32,8 @@ public class AbstractRestControllerTest extends AbstractTestContainerConfigurati
 
     protected Token mockUserToken;
 
-    @Mock
-    private TokenConfigurationParameter configurationParameter;
+    @Autowired
+    private TokenConfig tokenConfig;
 
     @BeforeEach
     public void initializeAuth() {
@@ -47,7 +47,6 @@ public class AbstractRestControllerTest extends AbstractTestContainerConfigurati
                 .userStatus(UserStatus.ACTIVE)
                 .build();
 
-        this.configurationParameter = new TokenConfigurationParameter();
         this.mockUserToken = this.generate(mockUser.getUserClaims());
     }
 
@@ -58,7 +57,7 @@ public class AbstractRestControllerTest extends AbstractTestContainerConfigurati
 
         final Date accessTokenExpiresAt = DateUtils
                 .addMinutes(new Date(currentTimeMills),
-                        configurationParameter.getAccessTokenExpireMinute());
+                        tokenConfig.getAccessTokenExpireMinutes());
 
         final String accessToken = Jwts.builder()
                 .header()
@@ -67,13 +66,13 @@ public class AbstractRestControllerTest extends AbstractTestContainerConfigurati
                 .id(UUID.randomUUID().toString())
                 .issuedAt(tokenIssuedAt)
                 .expiration(accessTokenExpiresAt)
-                .signWith(configurationParameter.getPrivateKey())
+                .signWith(tokenConfig.getPrivateKey())
                 .claims(claims)
                 .compact();
 
         final Date refreshTokenExpiresAt = DateUtils
                 .addDays(new Date(currentTimeMills),
-                        configurationParameter.getRefreshTokenExpireDay());
+                        tokenConfig.getRefreshTokenExpireDays());
 
         final String refreshToken = Jwts.builder()
                 .header()
@@ -82,7 +81,7 @@ public class AbstractRestControllerTest extends AbstractTestContainerConfigurati
                 .id(UUID.randomUUID().toString())
                 .issuedAt(tokenIssuedAt)
                 .expiration(refreshTokenExpiresAt)
-                .signWith(configurationParameter.getPrivateKey())
+                .signWith(tokenConfig.getPrivateKey())
                 .claim(TokenClaims.USER_ID.getValue(), claims.get(TokenClaims.USER_ID.getValue()))
                 .compact();
 

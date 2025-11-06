@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: test-api
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: MySQLDialect
+        hbm2ddl:
+          auto: update
+
+  datasource:
+    url: jdbc:mysql://mysql-database:3306/test
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+auth:
+  access-token-expire-minutes: ${AUTH_ACCESS_TOKEN_EXPIRE_MINUTES:30}
+  refresh-token-expire-days: ${AUTH_REFRESH_TOKEN_EXPIRE_DAYS:1}
+  public-key: ${AUTH_PUBLIC_KEY}
+  private-key: ${AUTH_PRIVATE_KEY}

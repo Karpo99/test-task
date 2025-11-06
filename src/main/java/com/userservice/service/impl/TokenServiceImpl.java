@@ -1,6 +1,6 @@
 package com.userservice.service.impl;
 
-import com.userservice.config.TokenConfigurationParameter;
+import com.userservice.config.TokenConfig;
 import com.userservice.model.Token;
 import com.userservice.model.enums.TokenClaims;
 import com.userservice.model.enums.TokenType;
@@ -33,7 +33,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 @RequiredArgsConstructor
 public class TokenServiceImpl implements TokenService {
-    private final TokenConfigurationParameter tokenConfigurationParameter;
+    private final TokenConfig tokenConfig;
     private final InvalidTokenService invalidTokenService;
 
     @Override
@@ -44,7 +44,7 @@ public class TokenServiceImpl implements TokenService {
 
         final Date accessTokenExpiredAt = DateUtils
                 .addMinutes(new Date(currentTimeMills),
-                        tokenConfigurationParameter
+                        tokenConfig
                                 .getAccessTokenExpireMinute());
 
         final String accessToken = Jwts.builder()
@@ -54,13 +54,13 @@ public class TokenServiceImpl implements TokenService {
                 .id(UUID.randomUUID().toString())
                 .issuedAt(tokenIssuedAt)
                 .expiration(accessTokenExpiredAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey())
+                .signWith(tokenConfig.getPrivateKey())
                 .claims(claims)
                 .compact();
 
         final Date refreshTokenExpiresAt = DateUtils
                 .addDays(new Date(currentTimeMills),
-                        tokenConfigurationParameter
+                        tokenConfig
                                 .getRefreshTokenExpireDay());
 
         final String refreshToken = Jwts.builder()
@@ -70,7 +70,7 @@ public class TokenServiceImpl implements TokenService {
                 .id(UUID.randomUUID().toString())
                 .issuedAt(tokenIssuedAt)
                 .expiration(refreshTokenExpiresAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey())
+                .signWith(tokenConfig.getPrivateKey())
                 .claim(TokenClaims.USER_ID.getValue(), claims.get(TokenClaims.USER_ID.getValue()))
                 .compact();
 
@@ -93,7 +93,7 @@ public class TokenServiceImpl implements TokenService {
 
         final Date accessTokenExpiredAt = DateUtils
                 .addMinutes(new Date(currentTimeMills),
-                        tokenConfigurationParameter
+                        tokenConfig
                                 .getAccessTokenExpireMinute());
 
         final String accessToken = Jwts.builder()
@@ -103,7 +103,7 @@ public class TokenServiceImpl implements TokenService {
                 .id(UUID.randomUUID().toString())
                 .issuedAt(accessTokenIssuedAt)
                 .expiration(accessTokenExpiredAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey())
+                .signWith(tokenConfig.getPrivateKey())
                 .claims(claims)
                 .compact();
 
@@ -117,7 +117,7 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public UsernamePasswordAuthenticationToken getAuthentication(String token) {
         final Jws<Claims> claimsJws = Jwts.parser()
-                .verifyWith(tokenConfigurationParameter.getPublicKey())
+                .verifyWith(tokenConfig.getPublicKey())
                 .build()
                 .parseSignedClaims(token);
 
@@ -150,7 +150,7 @@ public class TokenServiceImpl implements TokenService {
     public void verifyAndValidate(String jwt) {
         try {
             Jws<Claims> claimsJws = Jwts.parser()
-                    .verifyWith(tokenConfigurationParameter.getPublicKey())
+                    .verifyWith(tokenConfig.getPublicKey())
                     .build()
                     .parseSignedClaims(jwt);
 
@@ -176,7 +176,7 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public Jws<Claims> getClaims(String jwt) {
         return Jwts.parser()
-                .verifyWith(tokenConfigurationParameter.getPublicKey())
+                .verifyWith(tokenConfig.getPublicKey())
                 .build()
                 .parseSignedClaims(jwt);
     }
@@ -184,7 +184,7 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public Claims getPayload(String jwt) {
         return Jwts.parser()
-                .verifyWith(tokenConfigurationParameter.getPublicKey())
+                .verifyWith(tokenConfig.getPublicKey())
                 .build()
                 .parseSignedClaims(jwt)
                 .getPayload();
@@ -193,7 +193,7 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public String getId(String jwt) {
         return Jwts.parser()
-                .verifyWith(tokenConfigurationParameter.getPublicKey())
+                .verifyWith(tokenConfig.getPublicKey())
                 .build()
                 .parseSignedClaims(jwt)
                 .getPayload()
