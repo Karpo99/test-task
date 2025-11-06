@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="9.3">
+<file name="/home/karpo/IdeaProjects/User-service/src/test/java/com/userservice/controller/UserControllerTest.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/test/java/com/userservice/base/AbstractRestControllerTest.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/test/java/com/userservice/base/AbstractTestContainerConfiguration.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/repository/UserRepository.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/repository/InvalidTokenRepository.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/UserServiceApplication.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/controller/UserController.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/filter/CustomBearerAuthFilter.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/enums/ConfigurationParameter.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/enums/TokenClaims.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/enums/UserStatus.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/enums/UserType.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/enums/TokenType.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/Token.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/dto/request/TokenInvalidateRequest.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/dto/request/UserLoginRequest.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/dto/request/UserRegisterRequest.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/dto/request/TokenRefreshRequest.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/entity/InvalidTokenEntity.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/model/entity/UserEntity.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/InvalidTokenService.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/UserLoginService.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/UserRegisterService.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/UserLogoutService.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/TokenService.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/impl/UserRegisterServiceImpl.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/impl/TokenServiceImpl.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/impl/UserLogoutServiceImpl.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/impl/UserLoginServiceImpl.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/impl/RefreshTokenServiceImpl.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/impl/InvalidTokenServiceImpl.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/service/RefreshTokenService.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/ServletInitializer.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/exception/UserAlreadyExistException.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/exception/TokenAlreadyInvalidatedException.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/exception/handler/GlobalExceptionHandler.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/exception/handler/CustomError.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/exception/PasswordNotValidException.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/exception/UserNotFoundException.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/exception/UserStatusNotValidException.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/utils/KeyConverter.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/config/SecurityConfig.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/config/SwaggerConfig.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/java/com/userservice/config/TokenConfigurationParameter.java">
+</file>
+<file name="/home/karpo/IdeaProjects/User-service/src/main/resources/application.properties">
+</file>
+</checkstyle>

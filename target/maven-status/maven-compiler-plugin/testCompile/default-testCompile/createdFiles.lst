@@ -1,0 +1,3 @@
+com/userservice/controller/UserControllerTest.class
+com/userservice/base/AbstractTestContainerConfiguration.class
+com/userservice/base/AbstractRestControllerTest.class

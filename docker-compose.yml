@@ -1,0 +1,37 @@
+services:
+
+  mysql-database:
+    container_name: mysql-database
+    image: mysql:8.0.33
+    restart: always
+    env_file:
+      - .env
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_PORT: 3306
+    volumes:
+      - ./db:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -p${DATABASE_PASSWORD}" ]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+  user-service:
+    container_name: user-service
+    depends_on:
+      mysql-database:
+        condition: service_healthy
+    image: karpo99/user-service:latest
+    env_file:
+      - ./.env
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysql-database:3306/test
+      - spring.datasource.username=${DATABASE_USERNAME}
+      - spring.datasource.password=${DATABASE_PASSWORD}
